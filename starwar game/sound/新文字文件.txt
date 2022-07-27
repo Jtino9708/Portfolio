@@ -1,0 +1,14 @@
+lazer
+https://freesound.org/people/medetix/sounds/177906/
+weapon
+https://freesound.org/people/TRXone/sounds/475147/
+enemyFire
+https://freesound.org/people/xtrgamr/sounds/441640/
+bossFire
+https://freesound.org/people/wcoltd/sounds/440781/
+shield
+https://freesound.org/people/OwlStorm/sounds/404759/
+bgmusic
+https://www.youtube.com/watch?v=KF1GYZidmd8&ab_channel=LondonPhilharmonicOrchestra-Topic
+gameover
+https://freesound.org/people/noirenex/sounds/159408/

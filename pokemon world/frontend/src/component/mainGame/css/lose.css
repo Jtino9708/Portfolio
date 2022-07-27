@@ -1,0 +1,45 @@
+@import url('http://fonts.cdnfonts.com/css/pok?styles=957');
+
+#losebody {
+    background-image: url("../image/lose.jpg");
+    background-position: center;
+    background-size: cover;
+    /* background-repeat: no-repeat; */
+    overflow: hidden;
+    width: 100%;
+    height: 100vh;
+}
+
+.yellowword {
+    font-size: 5em;
+    text-align: center;
+    font-family: 'Pokemon Solid', sans-serif;
+    color: yellow;
+    -webkit-text-stroke: 5px #2a75bb;
+    text-shadow: -1vmin 0 1px #3c5aa6;
+}
+
+.ml3 {
+    /* font-weight: 900; */
+    font-size: 8em;
+  
+    margin: auto;
+    margin-top: 60px;
+    text-align: center;
+    font-family: 'Pokemon Solid', sans-serif;
+    color: red;
+    -webkit-text-stroke: 5px white;
+    /* text-shadow: -1vmin 0 1px #3c5aa6; */
+
+}
+
+#btns {
+    position: absolute;
+    width: 100%;
+    justify-content: center;
+    bottom: 10px;
+}
+
+.resultbtn {
+    margin: 30px
+}

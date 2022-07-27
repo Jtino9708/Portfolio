@@ -1,0 +1,44 @@
+#canvas{
+    border:1px solid rgb(0, 0, 0,0.7);
+    display: flex;
+    margin: auto;
+}
+body {
+    background-image: url("/img/starBackground.png");
+}
+.doornav {
+    height: 100%; 
+    width: 50%;
+    position: fixed; 
+    z-index: 2; 
+    top: 0; 
+    overflow-x: hidden; 
+    transition: 1s; 
+}
+
+#doorbtn1 {
+    position: absolute;
+    top: 44.5%;
+    left: 50px;
+}
+#doorbtn1:hover {
+    position: absolute;
+    top: 45%;
+    left: 55px;
+}
+#doorbtn2 {
+    position: absolute;
+    top: 45%;
+    left: 55px;
+}
+.nameSingIn{
+    height: 0; 
+    width: 100%;
+    position: fixed; 
+    z-index: 1; 
+    top: 0; 
+    /* background-color: gray; */
+    background-image: url("/img/starBackground.png");
+    overflow-x: hidden; 
+    transition: 0.5s; 
+}

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StarWarBattle</title>
+    <link rel="stylesheet" href="_css/bootstrap.min.css">
+    <script src="_js/jquery.min.js"></script>
+    <script src="_js/popper.min.js"></script>
+    <script src="_js/bootstrap.min.js"></script>
+    <script src="game.js"></script>
+    <link rel="stylesheet" href="CSS.css">
+
+</head>
+<body>
+    <!-- None Display Div -->
+    <div style="display: none;">
+        <img id="starBackground" src="/img/starBackground.png" />
+        <img id="falcon" src="/img/X戰機.png" />
+        <img id="TIEfighter" src="/img/鈦戰機.png" />
+        <img id="bossText" src="/img/boss.png" />
+        <img id="oneText" src="/img/1.png" />
+        <img id="twoText" src="/img/2.png" />
+        <img id="threeText" src="/img/3.png" />
+        <img id="gameOverText" src="/img/gameover.png" />
+        <img id="bulletRed" src="/img/bullet_red.png" />
+        <img id="bulletBlue" src="/img/bullet_blue.png" />
+        <img id="bulletOrange" src="/img/bullet_orange.png" />
+        <img id="superBoss" src="/img/超級滅星者.png" />
+        <img id="shieldBubble" src="/img/shield_bubble.png" />
+        <img id="weaponBubble" src="/img/weapon_bubble.png" />
+        <img id="shieldImg" src="/img/shield.png" />
+        <img id="weaponImg" src="/img/weapon.png" />
+        <img id="shieldSmallImg" src="/img/shieldSmall.png" />
+    </div>
+    <!-- main -->
+    <div class="row" style="height:100vh;margin: 0; ">
+        <div class="col">
+            <img src="img/info.png" style="width: 100%; height: 100%;">
+        </div>
+        <div class="col align-self-center">
+            <canvas id = "canvas" width="600" height="600"></canvas>
+            <img  id="start" src="img/start.gif" style="position:absolute;z-index: 1; top: 50px; left:70px;">
+            <img  id="restart" src="img/restart.gif" style="visibility: hidden; position:absolute;z-index: 1; top: 200px; left:120px;">
+        </div>
+        <div class="col">
+            <img src="img/rankFrame.png" style="width: 100%; height: 100%;">
+            <div id="rankList" style="color: white; position:absolute; z-index: 1; top: 95px;left: 100px;" >
+                <table style="width: 200px; height: 500px; color:yellow">
+                    
+                </table>
+            </div>
+        </div>
+    </div>
+    <!-- intro -->
+    <div id="mydoornav" class="doornav" style="right: 0">
+        <img id="doorbtn2" src="img/openButten2.png">
+        <img id="doorbtn1"src="img/openButten1.png">
+        <img src="img/doorRight.png" style="width: 100%; height: 100%;">
+    </div>
+    <div id="mydoornav2" class="doornav" style="left: 0">
+        <img src="img/doorLeft.png" style="width: 100%; height: 100%;">
+    </div>
+    <!-- game over -->
+    <div id="nameSingIn" class="nameSingIn">
+        <div class="row " style="height: 100%;">
+            <div class="col"></div>
+            <div class="col align-self-center" >
+                <img src="/img/gameover.png" ><br>
+                <h3 id="endScore" class="text-center text-white" ></h3><br>
+                <input id="playerName" type="text" value="user123" style="margin: auto; display:flex"><br>
+                <button id="rankSingInBtn" class="btn btn-danger" style="margin: auto; display:flex">OK</button>
+            </div>
+            <div class="col"></div>
+        </div>
+        
+    </div>
+
+
+</body>
+</html>
