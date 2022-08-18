@@ -43,7 +43,7 @@ class memberHomePage extends Component {
             this.state.point = member.data[0].point;
             // this.state.totalCards = member.data[0].totalcards;
             // this.state.totalCardsShow = member.data[0].totalcards;
-            //this.state.headSelected = member.data[0].head;
+            // this.state.headSelected = member.data[0].head;
             // this.state.headSelectedTemp = member.data[0].head;
             // this.state.team = member.data[0].team;
             // this.state.teamActive = member.data[0].teamActive;
@@ -114,7 +114,7 @@ class memberHomePage extends Component {
 
 
             } else {
-                alert('所需point不足')
+                alert('所需點數不足，請進行問答遊戲以獲得點數')
             }
 
         } else {
@@ -134,28 +134,28 @@ class memberHomePage extends Component {
 
                 {/* navbar start */}
                 <div class="bg-dark">
-                    <div class="container">
+                    <div>
                         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
                             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                                 <ul class="navbar-nav">
                                     <li class="nav-item active">
                                         <a class="nav-link" href="/">
-                                            <h1>首頁</h1>
+                                            <h3>首頁</h3>
                                         </a>
                                     </li>
                                     <li class="nav-item active">
                                         <a class="nav-link" href="/dexPage">
-                                            <h4>圖鑑</h4>
+                                            <h3>圖鑑</h3>
                                         </a>
                                     </li>
                                     <li class="nav-item active">
                                         <a class="nav-link" href="/start">
-                                            <h4>對戰遊戲</h4>
+                                            <h3>對戰遊戲</h3>
                                         </a>
                                     </li>
                                     <li class="nav-item active">
                                         <a class="nav-link" href="/littleGame">
-                                            <h4>問答遊戲</h4>
+                                            <h3>問答遊戲</h3>
                                         </a>
                                     </li>
                                 </ul>
@@ -175,14 +175,20 @@ class memberHomePage extends Component {
                         <div className='col-10 backgroundAnimation'>
                             <div className='row'>
                                 <div className='col-6 ' style = {{textAlign : 'center'}}>
-                                    <p className='display-4 text-light font-weight-bold'>ID : {this.state.resultData.id}</p>
+                                    <br />
+                                    <br />
+                                    <br />
+                                    
                                     <p className='display-4 text-light font-weight-bold'>{this.state.resultData.pname}</p>
-                                    <img src={'/' + this.state.resultData.imgPath} height="500px" width="500px" class="img-fluid" alt="" />
+                                    <img src={'/' + this.state.resultData.imgPath} height="500px" width="500px" class="img-fluid" alt="pokemonMaster/images/132.png" />
                                 </div>
                                 <div className='col-6'>
 
                                     <table className='mt-5 table table-borderless'>
                                         <tbody>
+                                            <tr>
+                                                <td><p className='h1 text-light font-weight-bold'>圖鑑ID : {this.state.resultData.id}</p></td>
+                                            </tr>
                                             <tr>
 
                                                 <td ><p className='h1 text-light'>HP : {this.state.resultData.HP}</p></td>
@@ -199,27 +205,16 @@ class memberHomePage extends Component {
                                         </tbody>
                                     </table>
 
-                                    {/* <p className='h1 text-light'>HP: {this.state.resultData.HP}</p><br />
-                                            <p className='h1 text-light'>Attack: {this.state.resultData.Attack}</p><br />
-                                            <p className='h1 text-light'>Defense: {this.state.resultData.Defense}</p><br />
-                                            <p className='h1 text-light'>SPattack: {this.state.resultData.SPattack}</p><br />
-                                            <p className='h1 text-light'>SPdefense: {this.state.resultData.SPdefense}</p><br />
-                                            <p className='h1 text-light'>Speed: {this.state.resultData.Speed}</p><br /> */}
+                
 
                                     <div className='row'>
                                         <div className='col-6'></div>
-                                        <div className='  col-6'>
+                                        <div className='col-6'>
                                             <br />
                                             <br />
-                                            <br />
-                                            <br />
-                                            
-                                            
-                                            <p className='display-4 text-light font-weight-bold'>Point : {parseInt(this.state.resultData.Attack) * 10}</p>
+                                            <p className='display-4 text-light font-weight-bold'>點數 : {parseInt(this.state.resultData.Attack) * 10}</p>
                                             <button className='btn-block r-3 mb-3 btn btn-link text-dark  bg-warning ' data-toggle="modal" data-target="#purchaseModal">
                                                 <p className='h1 text-dark font-weight-bold'>購買</p>
-                                                {/* <br /> */}
-                                                
                                             </button>
                                         </div>
 
@@ -268,8 +263,8 @@ class memberHomePage extends Component {
                                         確定購買 ?
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">cancel</button>
-                                        <button type="button" class="btn btn-primary" data-dismiss="modal" data-clickID={this.state.resultData.id} onClick={this.tradeOnce}>confirm</button>
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+                                        <button type="button" class="btn btn-primary" data-clickID={this.state.resultData.id} onClick={this.tradeOnce}>確認</button>
                                     </div>
                                 </div>
                             </div>

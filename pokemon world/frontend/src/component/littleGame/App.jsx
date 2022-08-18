@@ -21,19 +21,19 @@ function App() {
       question: <div className="dark">誰是<img src="./art/Dark.webp" height="70px"></img></div>,
       answers: [
         {
-          text: <img src="./pokemon/bee.png" height="100px"></img>,
+          text: <img src="./pokemon/015.png" height="100px"></img>,
           correct: false,
         },
         {
-          text: <img src="./pokemon/tree.png" height="100px"></img>,
+          text: <img src="./pokemon/248.png" height="100px"></img>,
           correct: true,
         },
         {
-          text: <img src="./pokemon/rite.png" height="100px"></img>,
+          text: <img src="./pokemon/020.png" height="100px"></img>,
           correct: false,
         },
         {
-          text: <img src="./pokemon/xi.png" height="100px"></img>,
+          text: <img src="./pokemon/022.png" height="100px"></img>,
           correct: false,
         },
       ],
@@ -43,19 +43,19 @@ function App() {
       question: <div className="dark">誰是<img src="./art/Dragon.webp" height="70px"></img></div>,
       answers: [
         {
-          text: <img src="./pokemon/derrr.png" height="100px"></img>,
+          text: <img src="./pokemon/149.png" height="100px"></img>,
           correct: true,
         },
         {
-          text: <img src="./pokemon/icce.png" height="100px"></img>,
+          text: <img src="./pokemon/006.png" height="100px"></img>,
           correct: false,
         },
         {
-          text: <img src="./pokemon/pun.png" height="100px"></img>,
+          text: <img src="./pokemon/009.png" height="100px"></img>,
           correct: false,
         },
         {
-          text: <img src="./pokemon/lala.png" height="100px"></img>,
+          text: <img src="./pokemon/034.png" height="100px"></img>,
           correct: false,
         },
       ],
@@ -65,7 +65,7 @@ function App() {
       question: <div className="dark">誰是<img src="./art/Electric.webp" height="70px"></img></div>,
       answers: [
         {
-          text: <img src="./pokemon/hor.png" height="100px"></img>,
+          text: <img src="./pokemon/028.png" height="100px"></img>,
           correct: false,
         },
         {
@@ -77,7 +77,7 @@ function App() {
           correct: false,
         },
         {
-          text: <img src="./pokemon/pipi.png" height="100px"></img>,
+          text: <img src="./pokemon/025.png" height="100px"></img>,
           correct: true,
         },
       ],
@@ -356,17 +356,17 @@ function App() {
         { id: 2, amount: "$ 200" },
         { id: 3, amount: "$ 300" },
         { id: 4, amount: "$ 500" },
-        { id: 5, amount: "$ 1.000" },
-        { id: 6, amount: "$ 2.000" },
-        { id: 7, amount: "$ 4.000" },
-        { id: 8, amount: "$ 8.000" },
-        { id: 9, amount: "$ 16.000" },
-        { id: 10, amount: "$ 32.000" },
-        { id: 11, amount: "$ 64.000" },
-        { id: 12, amount: "$ 125.000" },
-        { id: 13, amount: "$ 250.000" },
-        { id: 14, amount: "$ 500.000" },
-        { id: 15, amount: "$ 1.000.000" },
+        { id: 5, amount: "$ 1,000" },
+        { id: 6, amount: "$ 2,000" },
+        { id: 7, amount: "$ 4,000" },
+        { id: 8, amount: "$ 8,000" },
+        { id: 9, amount: "$ 16,000" },
+        { id: 10, amount: "$ 32,000" },
+        { id: 11, amount: "$ 64,000" },
+        { id: 12, amount: "$ 125,000" },
+        { id: 13, amount: "$ 250,000" },
+        { id: 14, amount: "$ 500,000" },
+        { id: 15, amount: "$ 1,000,000" },
       ].reverse(),
     []
   );
@@ -391,7 +391,7 @@ function App() {
               <h1 className="endText">You earned: {earned} <button type="bottun" className="btn btn-primary" onClick={async()=>{
                 if(cookies.get('token')){
                   var tamp = '';
-                  earned.split(' ')[1].split('.').map((val)=>{tamp+=val})
+                  earned.split(' ')[1].split(',').map((val)=>{tamp+=val})
                   var addPoint = parseInt(tamp);
                   await axios.post("http://127.0.0.1:8000/api/updatePoint",{
                     'id':`${base64_decode(cookies.get('token'))}`,

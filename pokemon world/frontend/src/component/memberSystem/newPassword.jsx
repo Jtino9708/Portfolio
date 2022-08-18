@@ -47,28 +47,28 @@ class newPassword extends Component {
             <div className='backgroundAnimation2 width100'>
             {/* navbar start */}
             <div class="bg-dark">
-                    <div class="container">
+                    <div>
                         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
                             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                                 <ul class="navbar-nav">
                                     <li class="nav-item active">
                                     <a class="nav-link" href="/">
-                                        <h1>首頁</h1>
+                                        <h3>首頁</h3>
                                     </a>
                                     </li>
                                     <li class="nav-item active">
                                     <a class="nav-link" href="/dexPage">
-                                        <h4>圖鑑</h4>
+                                        <h3>圖鑑</h3>
                                     </a>
                                     </li>
                                     <li class="nav-item active">
                                     <a class="nav-link" href="/start">
-                                        <h4>對戰遊戲</h4>
+                                        <h3>對戰遊戲</h3>
                                     </a>
                                     </li>
                                     <li class="nav-item active">
                                     <a class="nav-link" href="/littleGame">
-                                        <h4>問答遊戲</h4>
+                                        <h3>問答遊戲</h3>
                                     </a>
                                     </li>
                                 </ul>
@@ -84,8 +84,8 @@ class newPassword extends Component {
                         <form className='mb-5 mt-3' action="">
                             <span className='font-weight-bold' >新密碼 :</span>
                             <input type="password" className='m-2' onChange={this.newPasswordOnChange} value={this.state.newMember.newPassword}/><br />
-                            <span className='font-weight-bold' >再次輸入密碼 :</span>
-                            <input type="password" className='m-2' onChange={this.newPasswordOnChangeAgain} value={this.state.newMember.newPasswordAgain}/><br />
+                            <span className='font-weight-bold m-2' >再次輸入密碼 :</span>
+                            <input type="password" className='mr-5' onChange={this.newPasswordOnChangeAgain} value={this.state.newMember.newPasswordAgain}/><br />
                             <input onClick={this.clickOk} type="button" value="確認" className='m-2 btn btn-secondary'/>
                         </form>
                     </div>

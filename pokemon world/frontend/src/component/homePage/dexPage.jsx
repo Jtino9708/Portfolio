@@ -2,6 +2,10 @@ import React, { Component } from 'react';
 import axios from "axios";
 import Cookies from 'universal-cookie'
 import { decode as base64_decode, encode as base64_encode } from 'base-64';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
+import './css/memberpage.css';
+
 
 const cookies = new Cookies();
 
@@ -17,6 +21,7 @@ class memberHomePage extends Component {
         pokemonDataShow: [],
         dexIDselect: '',
         serchInput: '',
+        scrollTopDisplay:'none'
 
     }
 
@@ -47,7 +52,7 @@ class memberHomePage extends Component {
         var pokemonData = await axios.get(`http://127.0.0.1:8000/api/pokemon`);
         this.state.pokemonData = pokemonData.data;
         this.state.pokemonDataShow = pokemonData.data;
-        // console.log(this.state.pokemonData);
+        console.log(this.state.pokemonData);
         this.setState({});
 
     }
@@ -128,6 +133,7 @@ class memberHomePage extends Component {
     }
 
     purchaseModal = (props) => {
+        console.log(props.target.getAttribute('data-clickID'));
         this.state.purchaseID = props.target.getAttribute('data-clickID');
         this.state.costPoint = this.state.pokemonDataShow[this.state.purchaseID - 1].Attack * 10
 
@@ -156,7 +162,7 @@ class memberHomePage extends Component {
 
 
             } else {
-                alert('所需point不足')
+                alert('所需點數不足，請進行問答遊戲以獲得點數')
             }
 
         } else {
@@ -169,34 +175,53 @@ class memberHomePage extends Component {
 
     }
 
+    topFunction = ()=>{
+        // console.log(document.documentElement.scrollTop)
+        document.documentElement.scrollTop=0;
+    }
+
+    isScroll = () => {
+        // console.log(document.documentElement.scrollTop);
+        if(document.documentElement.scrollTop>50){
+            this.state.scrollTopDisplay = 'block';
+            this.setState({});
+        }else{
+            this.state.scrollTopDisplay = 'none';
+            this.setState({});
+        }
+    }
+
     render() {
         return (
             <div style={{ 'backgroundColor': '#25244b' }}>
+                {window.onscroll = ()=>{this.isScroll()}}
+                {/* top button */}
+                <button onClick={this.topFunction} id="myBtn" title="Go to top" style={{display:`${this.state.scrollTopDisplay}`}}>Top</button>
 
                 {/* navbar start */}
                 <div class="bg-dark">
-                    <div class="container">
+                    <div>
                         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
                             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                                 <ul class="navbar-nav">
                                     <li class="nav-item active">
                                         <a class="nav-link" href="/">
-                                            <h1>首頁</h1>
+                                            <h3>首頁</h3>
                                         </a>
                                     </li>
                                     <li class="nav-item active">
                                         <a class="nav-link" href="/dexPage">
-                                            <h4>圖鑑</h4>
+                                            <h3>圖鑑</h3>
                                         </a>
                                     </li>
                                     <li class="nav-item active">
                                         <a class="nav-link" href="/start">
-                                            <h4>對戰遊戲</h4>
+                                            <h3>對戰遊戲</h3>
                                         </a>
                                     </li>
                                     <li class="nav-item active">
                                         <a class="nav-link" href="/littleGame">
-                                            <h4>問答遊戲</h4>
+                                            <h3>問答遊戲</h3>
                                         </a>
                                     </li>
                                 </ul>
@@ -211,14 +236,7 @@ class memberHomePage extends Component {
                 <div className="container-fluid mt-3 ">
                     <div className="row">
                         <div className='col'></div>
-                        <div className='col-10 backgroundAnimation'>
-                            {/* <!-- ---------- Banner carousel ----------- --> */}
-                            {/* <div className='mt-3 mb-3 d-flex justify-content-center'>
-                                <img src="img/UNITE1.webp" width="88%" alt="" />
-                            </div>
-                            <div className='mb-3 d-flex justify-content-center'>
-                                <img src="img/UNITE0.webp" width="75%" alt="" />
-                            </div> */}
+                        <div className='col-10 backgroundAnimation '>
 
                             <div className="mb-3 row d-flex justify-content-center">
                                 <div class="col-lg-8">
@@ -239,31 +257,42 @@ class memberHomePage extends Component {
                                 </div>
                             </div>
 
-                            <div className="row" id="showDex">
+                            <div className="row " id="showDex">
 
                                 {this.state.pokemonDataShow.map((item, key) =>
-                                    <div class="col-sm-6 col-md-4 col-lg-3">
-                                        <div className="item h-100">
-                                            <img src={this.state.pokemonDataShow[key].imgPath} class="img-fluid" alt="" />
+                                    <div className="col-sm-12 col-md-6 col-lg-4 ">
+                                        <div className="mt-5 item ">
 
-                                            <div className='row'>
-                                                <p className="h4 " style={{ color: '#a9eee9' }}>ID : {this.state.pokemonDataShow[key].id}</p>
-                                                <button className="ml-3 btn btn-link text-dark bg-light text-wrap font-weight-bold" data-clickID={`${this.state.pokemonDataShow[key].id}`} onClick={this.dexIDselect}>
-                                                    {this.state.pokemonDataShow[key].pname}
-                                                </button>
-                                                <button className="ml-1 btn  btn-success font-weight-bold">{this.state.pokemonDataShow[key].type0}</button>
-                                                {this.type1IsSet(item, key)}
-                                                {/* <button class="ml-1 btn btn-link text-dark bg-warning">{this.state.pokemonData[key].type1}</button> */}
+                                            <div className='row d-flex justify-content-start'>
+                                                <div className='col-12 d-flex justify-content-start'>
+                                                    {/* <p className="h2 ml-3" style={{ color: '#a9eee9' }}>ID : {this.state.pokemonDataShow[key].id}</p> */}
+
+                                                    <button className=" btn btn-link text-dark  text-wrap font-weight-bold" data-clickID={`${this.state.pokemonDataShow[key].id}`} onClick={this.dexIDselect}>
+                                                        <p className="h2  font-weight-bold" style={{ color: '#a9eee9' }} data-clickID={`${this.state.pokemonDataShow[key].id}`} onClick={this.dexIDselect} >{this.state.pokemonDataShow[key].pname}</p>
+                                                    </button>
+                                                </div>
+
+
                                             </div>
 
+                                            <div className='row d-flex justify-content-center'>
+                                                <img src={this.state.pokemonDataShow[key].imgPath} width="66.6%" />
+                                            </div>
 
+                                            <div className="row d-flex justify-content-center">
 
+                                                <div className='col-8 d-flex justify-content-start'>
+                                                    <button className="ml-0 btn  btn-light font-weight-bold">NO. {this.state.pokemonDataShow[key].id}</button>
+                                                    <button className="ml-2 btn  btn-success font-weight-bold">{this.state.pokemonDataShow[key].type0}</button>
+                                                    {this.type1IsSet(item, key)}
+                                                </div>
 
+                                                
 
+                                                <div className='col-4 d-flex justify-content-center' data-toggle="modal" data-target="#purchaseModal" data-clickID={`${this.state.pokemonDataShow[key].id}`} onClick={this.purchaseModal}>
+                                                    <button className="mt-0 ml-0 btn btn-outline-warning font-weight-bold" data-toggle="modal" data-target="#purchaseModal" data-clickID={`${this.state.pokemonDataShow[key].id}`} onClick={this.purchaseModal}><div data-toggle="modal" data-target="#purchaseModal" data-clickID={`${this.state.pokemonDataShow[key].id}`} onClick={this.purchaseModal} ><FontAwesomeIcon icon={faCartShopping} /></div></button>
+                                                </div>
 
-
-                                            <div className="row">
-                                                <button className="mt-1 btn   btn-outline-warning font-weight-bold" data-toggle="modal" data-target="#purchaseModal" data-clickID={`${this.state.pokemonDataShow[key].id}`} onClick={this.purchaseModal}>購買</button>
                                             </div>
 
                                         </div>
@@ -344,8 +373,8 @@ class memberHomePage extends Component {
                                     確定購買 ?
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">cancel</button>
-                                    <button type="button" class="btn btn-primary" data-dismiss="modal" data-clickID={this.state.purchaseID} onClick={this.tradeOnce}>confirm</button>
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+                                    <button type="button" class="btn btn-primary" data-dismiss="modal" data-clickID={this.state.purchaseID} onClick={this.tradeOnce}>確認</button>
                                 </div>
                             </div>
                         </div>

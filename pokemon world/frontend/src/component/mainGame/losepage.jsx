@@ -34,7 +34,7 @@ anime.timeline({loop: true})
     render() {
         return (
             <div class="row" id='losebody'>
-                
+                <audio src='audio/Lose_Jigglypuffs_song.mp3' autoPlay loop></audio>
                 <div class="col-7">
                     <h1 className="yellowword mt-3" >Card Battle</h1>
                 

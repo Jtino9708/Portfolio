@@ -37,28 +37,28 @@ class sendMail extends Component {
             <div className='backgroundAnimation2 width100'>
             {/* navbar start */}
             <div class="bg-dark">
-                    <div class="container">
+                    <div>
                         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
                             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                                 <ul class="navbar-nav">
                                     <li class="nav-item active">
                                     <a class="nav-link" href="/">
-                                        <h1>首頁</h1>
+                                        <h3>首頁</h3>
                                     </a>
                                     </li>
                                     <li class="nav-item active">
                                     <a class="nav-link" href="/dexPage">
-                                        <h4>圖鑑</h4>
+                                        <h3>圖鑑</h3>
                                     </a>
                                     </li>
                                     <li class="nav-item active">
                                     <a class="nav-link" href="/start">
-                                        <h4>對戰遊戲</h4>
+                                        <h3>對戰遊戲</h3>
                                     </a>
                                     </li>
                                     <li class="nav-item active">
                                     <a class="nav-link" href="/littleGame">
-                                        <h4>問答遊戲</h4>
+                                        <h3>問答遊戲</h3>
                                     </a>
                                     </li>
                                 </ul>
@@ -70,7 +70,7 @@ class sendMail extends Component {
             <div className='row mx-0' style={{marginTop:'150px'}}>
             <div className='col'></div>
                     <div className='col-6 align-self-center bg-info text-center'>
-                        <h2 className='my-4'>請輸入信箱</h2>
+                        <h2 className='mb-4 mt-5'>請輸入信箱</h2>
                         <form className='mb-5 mt-3' action="">
                             <span className='font-weight-bold' >信箱 :</span>
                             <input type="text" className='m-2' onChange={this.mailOnChange} value={this.state.newMember.mail}/><br />

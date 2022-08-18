@@ -1,11 +1,8 @@
 import React, { Component } from 'react';
 import Axios from 'axios';
 import './css/start.css';
-// import './js/frontPage.js';
-// import anime from'https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js';
 import $ from "jquery";
 import anime from "animejs/lib/anime.es.js"
-
 import Cookies from 'universal-cookie'
 
 const cookies = new Cookies();
@@ -59,6 +56,7 @@ class startpage extends Component {
     render() {
         return (
             <div>
+                <audio src='audio/Title_Screen.mp3' autoPlay loop></audio>
                 {/* <!-- 主畫面 --> */}
                 <div className="pt-4" id="startbody">
                     <h1 className="yellowword" >PoKéMoN</h1>
@@ -70,6 +68,7 @@ class startpage extends Component {
                         <a href="#" id="start" onClick={this.checkLogin}>
                             Game Start
                         </a>
+                        <br /><br />
                     </div>
                     <br /><br />
 
@@ -78,6 +77,7 @@ class startpage extends Component {
                             遊戲說明
 
                         </div>
+                        
                        {this.isLogin()}
                     </div>
 

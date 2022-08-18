@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import $ from "jquery";
 import './css/battle.css';
+import './css/battle_02.css';
 import pokeball from './image/Pokeball.png';
 import dice from './image/dice_1.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -9,6 +10,7 @@ import axios from 'axios';
 import anime from 'animejs/lib/anime.es.js';
 import { Illustration, Ellipse, Shape, RoundedRect, useRender } from 'react-zdog';
 import Zdog from 'zdog'
+// import ReactAudioPlayer from 'react-audio-player';
 import Cookies from 'universal-cookie'
 
 const cookies = new Cookies();
@@ -344,133 +346,176 @@ class battlepage extends Component {
         
         // 擲骰子
         button.addEventListener('click', () => {
-                var randomN = Math.floor(Math.random() * 10);
-                var p_point = Math.floor(Math.random()*rotate.length);
-            
-                const randomItem = rotate[p_point];
-                // console.log(p_point);
-                anime({
-                    targets: rotation,
-                    // ! increment the input rotation with a random number of additional rotations
-                    x: randomItem.x + TAU * randomN,
-                    y: randomItem.y + TAU * randomN,
-                    z: TAU * randomN,
-                    duration: 1500,
-                    // while the object is being updated update the rotation of the dice
-                    // ! remember to update the graphic with the updateRenderGraph() method
-                    update() {
-                        dice.rotate.x = rotation.x;
-                        dice.rotate.y = rotation.y;
-                        dice.rotate.z = rotation.z;
-                        illustration.updateRenderGraph();
+                if ($('.battleCard').html()) {
+                
+                    var randomN = Math.floor(Math.random() * 10);
+                    var p_point = Math.floor(Math.random()* 6 );
+                    // switch (p_point) {
+                    //     case 6 :
+                    //         p_point = 3;
+                    //         break;
+                    //     case 7 :
+                    //         p_point = 4;
+                    //         break;
+                    //     case 8 :
+                    //         p_point = 5;
+                    //         break;
+                    //     default:
+                    // }
+                
+                    const randomItem = rotate[p_point];
+                    // console.log(p_point);
+                    anime({
+                        targets: rotation,
+                        // ! increment the input rotation with a random number of additional rotations
+                        x: randomItem.x + TAU * randomN,
+                        y: randomItem.y + TAU * randomN,
+                        z: TAU * randomN,
+                        duration: 1500,
+                        // while the object is being updated update the rotation of the dice
+                        // ! remember to update the graphic with the updateRenderGraph() method
+                        update() {
+                            dice.rotate.x = rotation.x;
+                            dice.rotate.y = rotation.y;
+                            dice.rotate.z = rotation.z;
+                            illustration.updateRenderGraph();
+                        }
+                    });
+
+                    // 電腦的骰子
+                    var diceImg = [];
+                    diceImg[0] = require("./image/dice_1.png");
+                    diceImg[1] = require("./image/dice_2.png");
+                    diceImg[2] = require("./image/dice_3.png");
+                    diceImg[3] = require("./image/dice_4.png");
+                    diceImg[4] = require("./image/dice_5.png");
+                    diceImg[5] = require("./image/dice_6.png");
+
+                    // var p = Math.floor(Math.random() * diceImg.length);
+                    // $('#p_diceImg').attr('src', diceImg[p]);
+
+                    var c_point = Math.floor(Math.random() * diceImg.length);
+                    $('#c_diceImg').attr('src', diceImg[c_point]);
+
+                    console.log(c_point);
+                    console.log(p_point);
+
+                    // 畫面延遲
+                    function delay(n) {
+                        return new Promise(function (resolve) {
+                            setTimeout(resolve,n*1000);
+                        })
                     }
-                });
-
-                // 電腦的骰子
-                var diceImg = [];
-                diceImg[0] = require("./image/dice_1.png");
-                diceImg[1] = require("./image/dice_2.png");
-                diceImg[2] = require("./image/dice_3.png");
-                diceImg[3] = require("./image/dice_4.png");
-                diceImg[4] = require("./image/dice_5.png");
-                diceImg[5] = require("./image/dice_6.png");
-
-                // var p = Math.floor(Math.random() * diceImg.length);
-                // $('#p_diceImg').attr('src', diceImg[p]);
-
-                var c_point = Math.floor(Math.random() * diceImg.length);
-                $('#c_diceImg').attr('src', diceImg[c_point]);
-
-                // 畫面延遲
-                function delay(n) {
-                    return new Promise(function (resolve) {
-                        setTimeout(resolve,n*1000);
-                    })
-                }
-
-                async function attacking() {
                     
-                    // 判斷雙方骰子點數
-                    if ( p_point > c_point) {
+                    const p_win = ['slidein','bigger','rollin'];
+                    const c_win = ['slidein_c','bigger_c','rollin_c'];
+
+                    const p_lose =['wobbleright','flated','rollout'];
+                    const c_lose = ['wobbleleft_c','flated_c','rollout_c'];
+
+                    const choose = Math.floor(Math.random()* p_win.length);
+
+                    async function attacking() {
                         
-                        await delay(0.5);
-                        $('#p_card').addClass('p_win');
-                        await delay(1);
-                        $('#c_card').addClass('c_lose');
-                        
-                        // 扣血量 = 攻擊方攻擊力的0.3倍
-                        var n1 = $('#p_card').find('#p_atk').html();
-                        aiHp = aiHp - (n1 * 0.3);
-                        aiHp01 = aiHp + '%';
+                        // 判斷雙方骰子點數
+                        if ( p_point > c_point) {
+                            
+                            // await delay(0.5);
+                            // $('#p_card').addClass('p_win');
+                            // await delay(1);
+                            // $('#c_card').addClass('c_lose');
+                            
+                            await delay(0.5);
+                            if (choose == 0) {
+                                $('#sfx1')[0].play()
+                            }else if(choose == 1) {
+                                $('#sfx2')[0].play()
+                            }else if(choose == 2) {
+                                $('#sfx3')[0].play()
+                            }
+                            $('#p_card').find('img').addClass(p_win[choose]);
+                            // await delay(1);
+                            $('#p_card').animate('end',function(){
+                                $('#c_card').find('img').addClass(c_lose[choose]);
+                            })
+                            
+                            // 扣血量 = 攻擊方攻擊力的0.3倍
+                            var n1 = $('#p_card').find('#p_atk').html();
+                            aiHp = aiHp - (n1 * 0.3);
+                            aiHp01 = aiHp + '%';
+        
+                            await delay(1);
+                            $('#AiBlood').css('width',aiHp01);
+
+                            await delay(0.5);
+                            // 淨空場地
+                            $('.battleCard').empty();
+                        }else if(p_point < c_point) {
+                            
+                            // await delay(0.5);
+                            // $('#c_card').addClass('c_win');
+                            // await delay(1);
+                            // $('#p_card').addClass('p_lose');
+                            
+                            await delay(0.5);
+                            if (choose == 0) {
+                                $('#sfx1')[0].play()
+                            }else if(choose == 1) {
+                                $('#sfx2')[0].play()
+                            }else if(choose == 2) {
+                                $('#sfx3')[0].play()
+                            }
+                            $('#c_card').find('img').addClass(c_win[choose]);
+                            // await delay(1);
+                            $('#c_card').animate('end',function(){
+                                $('#p_card').find('img').addClass(p_lose[choose]);
+                            })
+
+                            // 效果同上
+                            var n2 = $('#c_card').find('#c_atk').html();
+                            gamerHp = gamerHp - (n2 * 0.3);
+                            gamerHp01 = gamerHp + '%';
+                            
+                            await delay(1);
+                            $('#GamerBlood').css('width',gamerHp01);
+                            
+                            await delay(0.5);
+                            $('.battleCard').empty();
+                        }
+
+                        // 判斷輸贏 ----> 當場面無卡牌時，判斷剩餘血量
+                        if (!$('#p1').html() & !$('#p2').html() & !$('#p3').html()
+                            & !$('#p4').html() & !$('#p5').html()) {
     
-                        await delay(1);
-                        $('#AiBlood').css('width',aiHp01);
+                            if (!$('.battleCard').html()) {
 
-                        await delay(2);
-                        // 淨空場地
-                        $('.battleCard').empty();
-                        $('#p_card').removeClass('p_win');
-                        $('#c_card').removeClass('c_lose');
+                                if (gamerHp > aiHp) {
 
-                    }else if(p_point < c_point) {
-                        
-                        await delay(0.5);
-                        $('#c_card').addClass('c_win');
-                        await delay(1);
-                        $('#p_card').addClass('p_lose');
+                                    // 玩家贏
+                                    window.location.href = '/youwin';
+                                }else if(gamerHp < aiHp){
 
-                        // 效果同上
-                        var n2 = $('#c_card').find('#c_atk').html();
-                        gamerHp = gamerHp - (n2 * 0.3);
-                        gamerHp01 = gamerHp + '%';
-                        
-                        await delay(1);
-                        $('#GamerBlood').css('width',gamerHp01);
-                        
-                        await delay(2);
-                        $('.battleCard').empty();
-                        $('#c_card').removeClass('c_win');
-                        $('#p_card').removeClass('p_lose');
-                    }
-
-                    // 判斷輸贏 ----> 當場面無卡牌時，判斷剩餘血量
-                    if (!$('#p1').html() & !$('#p2').html() & !$('#p3').html()
-                        & !$('#p4').html() & !$('#p5').html()) {
-
-                        if (!$('.battleCard').html()) {
-
-                            if (gamerHp > aiHp) {
-
-                                // 玩家贏
-                                window.location.href = '/youwin';
-                            }else if(gamerHp < aiHp){
-
-                                // 玩家輸
-                                window.location.href = '/youlose';
+                                    // 玩家輸
+                                    window.location.href = '/youlose';
+                                }
                             }
                         }
-                    }
 
-                    if (aiHp <= 0) {
-                        // 玩家贏
-                        window.location.href = '/youwin';
-                    }else if (gamerHp <= 0) {
-                        // 玩家輸
-                        window.location.href = '/youlose';
+                        if (aiHp <= 0) {
+                            // 玩家贏
+                            window.location.href = '/youwin';
+                        }else if (gamerHp <= 0) {
+                            // 玩家輸
+                            window.location.href = '/youlose';
+                        }
+                        
+                        
                     }
-                    
+                    attacking();
                     
                 }
-                attacking();
-                
             }
         );
-
-
-        
-        // $('.computerCard').html(`<img src= ${pokeCard} alt=""/>`);
-
-        // $('.playerCard').html(`<span><img src= ${require("./pokemonMaster/images/001.png")} alt=""/>妙蛙種子</span>`);
 
     }
 
@@ -481,12 +526,32 @@ class battlepage extends Component {
 
     // 出牌
     doPlay=()=> {
-        $('.playercard').on('click', function () {
-            // 如果放牌區是空的，就把牌丟出去
-            // if(!$('#p_card').html()){
-            //     $('#p_card').html($(this).html());
-            //     $(this).css('display','none').empty();
-            // }
+        function delay(n) {
+            return new Promise(function (resolve) {
+                setTimeout(resolve,n*1000);
+            })
+        }
+        $('.playercard').on('click', async function () {
+            $('#gamerBall').css('display','block');
+            $('#gamerBall').addClass('pokeballin_p');
+            
+            $('#cpuBall').css('display','block');
+            $('#cpuBall').addClass('pokeballin_c');
+            
+            $('#p_card').removeClass('showup');
+            $('#c_card').removeClass('showup');
+
+            await delay(0.6);
+            $('#p_card').addClass('showup');
+            $('#c_card').addClass('showup');
+            // $('#p_card').html('<img className="ballopen" src="img/pokeballopen01.png" alt=""/>');
+            // $('#c_card').html('<img className="ballopen" src="img/pokeballopen01.png" alt=""/>');
+            
+            $('#gamerBall').removeClass('pokeballin_p');
+            $('#gamerBall').css('display','none');
+            
+            $('#cpuBall').removeClass('pokeballin_c');
+            $('#cpuBall').css('display','none');
 
             // 讓電腦的出牌順序跟玩家一樣
             if (!$('#c_card').html() && !$('#p_card').html()) {
@@ -531,14 +596,21 @@ class battlepage extends Component {
     render() {
         return (
             <div id="backGroundDiv" className='battlebody'>
+                <audio id='sfx1' src="audio/Clamp.mp3"></audio>
+                <audio id='sfx2' src="audio/KarateChopWHit.mp3"></audio>
+                <audio id='sfx3' src="audio/Wrap.mp3"></audio>
+                
                 {/* <!-- 功能表單BUTTON --> */}
                 <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#exampleModal"
                     id="modalbtn">
                     <FontAwesomeIcon icon={faGear} />
                 </button>
                 {/* <!-- 功能表單內容 --> */}
+                
                 <div className="modal fade " id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
                     aria-hidden="true">
+                    {/* <ReactAudioPlayer src="audio/Battle.mp3" autoPlay loop controls/> */}
+                    <audio src="audio/Battle.mp3" autoPlay loop controls></audio>
                     <div className="modal-dialog modal-dialog-centered modal-sm" role="document">
                         <div className="modal-content">
                             <div className="modal-header d-block text-center">
@@ -579,6 +651,7 @@ class battlepage extends Component {
 
                 </div>
                 {/* <!-- 電腦牌組 --> */}
+                <img id="cpuBall" src="img/pokeball002.png" alt="" />
                 <div id="computerplayer">
                     <div className="comcard" id='c1'></div>
                     <div className="comcard" id='c2'></div>
@@ -623,6 +696,7 @@ class battlepage extends Component {
                     <div className="playercard myMOUSE" id="p4" onClick={this.doPlay}></div>
                     <div className="playercard myMOUSE" id="p5" onClick={this.doPlay}></div>
                 </div >
+                <img id="gamerBall" src="img/pokeball002.png" alt="" />
 
                 <div div id="gameplayer_r" >
                     <div className="playercard_r" id="r1"></div>

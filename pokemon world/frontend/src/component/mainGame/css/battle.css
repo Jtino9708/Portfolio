@@ -148,12 +148,12 @@
 
 #c_dice {
     top: 0;
-    left: 15%;
+    left: 10%;
 }
 
 #p_dice {
     bottom: 0;
-    right: 20%;
+    right: 10%;
 }
 
 /* 出牌區div */
@@ -178,7 +178,7 @@
     background-size: contain;
     background-repeat: no-repeat; */
 
-    margin: 25px;
+    margin: 150px;
     height: 40vh;
     width: 30vh;
 
@@ -191,6 +191,10 @@
     max-width: 90%;
 }
 
+/* #c_card img{
+    transform: scaleX(-1);
+} */
+
 .playercard_r {
     display: none;
 }
@@ -198,6 +202,27 @@
 /* 玩家血量 */
 #GamerBlood {
     width: 100%;
+}
+
+#gamerBall {
+    position: absolute;
+    width: 80px;
+    right: 470px;
+    bottom: 30px;
+    display: none;
+}
+
+#cpuBall {
+    position: absolute;
+    width: 80px;
+    left: 500px;
+    display: none;
+}
+
+
+.ballopen {
+    width: 20%;
+    display: none;
 }
 
 /* 動畫 */
@@ -326,5 +351,136 @@
 
     100% {
         right: 0px;
+    }
+}
+
+.pokeballin_p {
+    -webkit-animation: pokeballin_p 0.6s ease-out both;
+    animation: pokeballin_p 0.6s ease-out both;
+}
+
+@-webkit-keyframes pokeballin_p {
+    0% {
+        -webkit-transform: translateY(0px) rotate(0deg);
+        transform: translateY(0px) rotate(0deg);
+        opacity: 1;
+    }
+
+    99% {
+        -webkit-transform: translateY(-300px) rotate(720deg);
+        transform: translateY(-300px) rotate(720deg);
+        opacity: 1;
+    }
+
+    100% {
+        -webkit-transform: translateY(-300px) rotate(720deg);
+        transform: translateY(-300px) rotate(720deg);
+        opacity: 0;
+    }
+}
+
+@keyframes pokeballin_p {
+    0% {
+        -webkit-transform: translateY(0px) rotate(0deg);
+        transform: translateY(0px) rotate(0deg);
+        opacity: 1;
+    }
+
+    99% {
+        -webkit-transform: translateY(-300px) rotate(720deg);
+        transform: translateY(-300px) rotate(720deg);
+        opacity: 1;
+    }
+
+    100% {
+        -webkit-transform: translateY(-300px) rotate(720deg);
+        transform: translateY(-300px) rotate(720deg);
+        opacity: 0;
+    }
+}
+
+.pokeballin_c {
+    -webkit-animation: pokeballin_c 0.6s ease-out both;
+    animation: pokeballin_c 0.6s ease-out both;
+}
+
+@-webkit-keyframes pokeballin_c {
+    0% {
+        -webkit-transform: translateY(0px) rotate(0deg);
+        transform: translateY(0px) rotate(0deg);
+        opacity: 1;
+    }
+
+    99% {
+        -webkit-transform: translateY(300px) rotate(720deg);
+        transform: translateY(300px) rotate(720deg);
+        opacity: 1;
+    }
+
+    100% {
+        -webkit-transform: translateY(300px) rotate(720deg);
+        transform: translateY(300px) rotate(720deg);
+        opacity: 0;
+    }
+}
+
+@keyframes pokeballin_c {
+    0% {
+        -webkit-transform: translateY(0px) rotate(0deg);
+        transform: translateY(0px) rotate(0deg);
+        opacity: 1;
+    }
+
+    99% {
+        -webkit-transform: translateY(300px) rotate(720deg);
+        transform: translateY(300px) rotate(720deg);
+        opacity: 1;
+    }
+
+    100% {
+        -webkit-transform: translateY(300px) rotate(720deg);
+        transform: translateY(300px) rotate(720deg);
+        opacity: 0;
+    }
+}
+
+.showup {
+    -webkit-animation: puff-in-center 0.7s cubic-bezier(0.470, 0.000, 0.745, 0.715) both;
+    animation: puff-in-center 0.7s cubic-bezier(0.470, 0.000, 0.745, 0.715) both;
+}
+
+@-webkit-keyframes puff-in-center {
+    0% {
+        -webkit-transform: scale(0.5);
+        transform: scale(0.5);
+        -webkit-filter: blur(4px);
+        filter: blur(4px);
+        opacity: 0;
+    }
+
+    100% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+        -webkit-filter: blur(0px);
+        filter: blur(0px);
+        opacity: 1;
+    }
+}
+
+@keyframes puff-in-center {
+    0% {
+        -webkit-transform: scale(0.5);
+        transform: scale(0.5);
+        -webkit-filter: blur(4px);
+        filter: blur(4px);
+        opacity: 0;
+    }
+
+    100% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+        -webkit-filter: blur(0px);
+        filter: blur(0px);
+        opacity: 1;
     }
 }

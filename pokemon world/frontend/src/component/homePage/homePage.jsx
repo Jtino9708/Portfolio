@@ -52,31 +52,31 @@ class memberHomePage extends Component {
 
     render() {
         return (
-            <div style={{ 'backgroundColor': '#25244b','overflow':'hidden'} }>
+            <div style={{'backgroundColor': '#25244b','overflow':'hidden'}} >
                 {/* navbar start */}
                 <div class="bg-dark">
-                    <div class="container">
+                    <div>
                         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
                             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                                 <ul class="navbar-nav">
                                     <li class="nav-item active">
                                     <a class="nav-link" href="/">
-                                        <h1>首頁</h1>
+                                        <h3>首頁</h3>
                                     </a>
                                     </li>
                                     <li class="nav-item active">
                                     <a class="nav-link" href="/dexPage">
-                                        <h4>圖鑑</h4>
+                                        <h3>圖鑑</h3>
                                     </a>
                                     </li>
                                     <li class="nav-item active">
                                     <a class="nav-link" href="/start">
-                                        <h4>對戰遊戲</h4>
+                                        <h3>對戰遊戲</h3>
                                     </a>
                                     </li>
                                     <li class="nav-item active">
                                     <a class="nav-link" href="/littleGame">
-                                        <h4>問答遊戲</h4>
+                                        <h3>問答遊戲</h3>
                                     </a>
                                     </li>
                                 </ul>
@@ -94,17 +94,17 @@ class memberHomePage extends Component {
                         <div className='container-fluid backgroundAnimation'>
 
                             {/* <!-- ---------- Banner carousel ----------- --> */}
-                            <div className='row d-flex ' >
-                                <div className='col-8 p-0'>
+                            <div className='row ' >
+                                <div className='col-9 p-3'>
                                     <div className='img-fluid'>
-                                        <img src="img/UNITE1.webp" width="113%" alt="" onClick={()=>{window.location = "/start";}}/>
+                                        <img src="img/UNITE0.webp" width="100%" alt="" onClick={()=>{window.location = "/start";}}/>
                                     </div>
                                     
                                     
                                 </div>
-                                <div className='col-4 p-0'>
+                                <div className='col-3 p-3'>
                                     <div className="img-fluid">
-                                    <img src="img/go0.jpg" width="100%" alt="" onClick={()=>{window.location = "/littleGame";}}/>
+                                    <img src="img/ball2.jpg" width="100%" alt="" onClick={()=>{window.location = "/littleGame";}}/>
                                     </div>
                                         
                                    
